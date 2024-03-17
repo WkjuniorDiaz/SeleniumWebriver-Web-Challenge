@@ -12,25 +12,33 @@ public class Base {
     public WebDriver driver;
     WebDriverWait wait;
 
-    public Base(WebDriver driver){
+    public Base(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
-    public void enterData(WebElement element, String data){
+    public void enterData(WebElement element, String data) {
         element.sendKeys(data);
     }
 
-    public void clickOn(WebElement element){
+    public void clickOn(WebElement element) {
         element.click();
     }
 
-    public String getElementText(WebElement element){
+    public String getElementText(WebElement element) {
         return element.getText();
     }
 
-    public void waitVisibilityOf(WebElement element){
+    public void waitVisibilityOf(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitAttributeToBe(WebElement element, String attributeName, String attributeValue) {
+        wait.until(ExpectedConditions.attributeToBe(element, attributeName, attributeValue));
+    }
+
+    public void waitAttributeContaining(WebElement element, String attributeName, String attributeValue) {
+        wait.until(ExpectedConditions.attributeContains(element, attributeName, attributeValue));
     }
 
 

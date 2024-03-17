@@ -15,6 +15,7 @@ public class CartStep {
 
     @When("the user proceeds to checkout")
     public void the_user_proceeds_to_checkout() {
+        cartPage.setCartPrices();
         cartPage.selectCheckout();
     }
 }
