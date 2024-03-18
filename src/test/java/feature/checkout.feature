@@ -12,6 +12,7 @@ Feature: Checkout
     And the user clicks on the continue button
     And the user clicks on the finish button to complete the checkout
     Then verify that the checkout was successfully and logout
+
   @Test
   Scenario: Adding multiple items to the cart and verifying prices and cart count
     When the user adds the product "Sauce Labs Fleece Jacket" to the cart
