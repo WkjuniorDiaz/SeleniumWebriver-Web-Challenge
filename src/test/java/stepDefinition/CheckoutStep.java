@@ -40,16 +40,14 @@ public class CheckoutStep {
     @Then("verify that the checkout was successfully and logout")
     public void verify_that_the_checkout_was_successfully_and_logout(){
         checkoutPage.validateCheckoutComplete();
-        Assert.assertEquals("Successful checkout message was not displayed","Thank you for your order",checkoutPage.getTextMessage1());
+        Assert.assertEquals("Successful checkout message was not displayed","Thank you for your order!",checkoutPage.getTextMessage1());
         checkoutPage.logOut();
     }
 
     @When("validate price from product {string} to price of Item Total")
     public void validate_price_from_product_to_price_of_item_total(String productName) {
         String checkoutPrice = checkoutPage.getItemTotalPrice();
-        System.out.println("Checkout Price: " + checkoutPrice);
         String productPrice = ProductPage.getPriceOfaProduct(productName);
-        System.out.println("Product Price: " + productPrice);
 
         Assert.assertEquals(productPrice,checkoutPrice);
     }

@@ -88,9 +88,7 @@ public class ProductPage extends Base {
 
     public static String getPriceOfaProduct(String productName){
         for (int i = 0; i < productPagePrice.size(); i++){
-            System.out.println("Array value: " + productPagePrice.get(i));
             if (productPagePrice.get(i).equals(productName)){
-                System.out.println("Array value found: " + productPagePrice.get(i + 1));
                 return productPagePrice.get(i + 1);
             }
         }
