@@ -12,13 +12,14 @@ import utils.Base;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class ProductPage extends Base {
 
-    ArrayList<Double> productPagePrice = new ArrayList<>();
-    String productPageCartCount = "";
-
+    static ArrayList<String> productPagePrice = new ArrayList<>();
+    static String productPageCartCount = "";
 
     @FindBy(xpath = "//span[@class='title']")
     WebElement productTitle;
@@ -64,9 +65,36 @@ public class ProductPage extends Base {
     public void  setProductPrice(String productName){
         By productPriceElement = By.xpath("//div[.='"+productName+"']/../../../div[@class='pricebar']/div");
         String getTextOfElement = getElementText(driver.findElement(productPriceElement));
-        double parseElement = Double.parseDouble(getTextOfElement.replace("$",""));
+        String parseElement =getTextOfElement.replace("$","");
 
+        productPagePrice.add(productName);
         productPagePrice.add(parseElement);
+    }
+
+    public static List<String> getProductPrice(){
+        List<String> onlyPrices = new ArrayList<>();
+
+        Pattern pattern = Pattern.compile("\\d+(\\.\\d+)?"); // Regular expression to match decimal numbers
+
+        for (String str : productPagePrice) {
+            Matcher matcher = pattern.matcher(str);
+            while (matcher.find()) {
+                onlyPrices.add((matcher.group()));
+            }
+        }
+
+        return onlyPrices;
+    }
+
+    public static String getPriceOfaProduct(String productName){
+        for (int i = 0; i < productPagePrice.size(); i++){
+            System.out.println("Array value: " + productPagePrice.get(i));
+            if (productPagePrice.get(i).equals(productName)){
+                System.out.println("Array value found: " + productPagePrice.get(i + 1));
+                return productPagePrice.get(i + 1);
+            }
+        }
+        return  null;
     }
 
     public void selectCart(){
@@ -75,7 +103,10 @@ public class ProductPage extends Base {
 
     public void setValueOfCart(){
         productPageCartCount = getElementText(cartIcon);
+    }
 
+    public static String getValueOfCart(){
+        return productPageCartCount;
     }
 
     public void sortBy(String sortOption){

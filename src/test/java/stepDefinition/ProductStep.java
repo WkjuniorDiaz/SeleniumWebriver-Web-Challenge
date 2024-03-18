@@ -9,7 +9,7 @@ import utils.TestContextSetup;
 public class ProductStep {
 
     TestContextSetup testContextSetup;
-    protected ProductPage productPage;
+    public ProductPage productPage;
 
     public ProductStep(TestContextSetup testContextSetup){
         this.testContextSetup = testContextSetup;
@@ -32,7 +32,6 @@ public class ProductStep {
     }
     @When("the user navigates to the cart")
     public void the_user_navigates_to_the_cart(){
-        productPage.setValueOfCart();
         productPage.selectCart();
     }
 

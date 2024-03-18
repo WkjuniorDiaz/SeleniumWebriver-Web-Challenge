@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import pageObject.PageObjectManager;
+import pageObject.ProductPage;
 
 import java.io.IOException;
 

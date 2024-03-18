@@ -2,10 +2,13 @@ package stepDefinition;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pageObject.ProductPage;
 import org.junit.Assert;
 import pageObject.CheckoutPage;
 import utils.TestContextSetup;
 import utils.TestDataLoader;
+
+import java.util.List;
 
 public class CheckoutStep {
     TestContextSetup testContextSetup;
@@ -39,6 +42,16 @@ public class CheckoutStep {
         checkoutPage.validateCheckoutComplete();
         Assert.assertEquals("Successful checkout message was not displayed","Thank you for your order",checkoutPage.getTextMessage1());
         checkoutPage.logOut();
+    }
+
+    @When("validate price from product {string} to price of Item Total")
+    public void validate_price_from_product_to_price_of_item_total(String productName) {
+        String checkoutPrice = checkoutPage.getItemTotalPrice();
+        System.out.println("Checkout Price: " + checkoutPrice);
+        String productPrice = ProductPage.getPriceOfaProduct(productName);
+        System.out.println("Product Price: " + productPrice);
+
+        Assert.assertEquals(productPrice,checkoutPrice);
     }
 
 

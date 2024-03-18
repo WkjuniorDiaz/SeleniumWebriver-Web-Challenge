@@ -1,10 +1,14 @@
 package pageObject;
 
+import io.cucumber.java.eo.Do;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Base;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckoutPage extends Base {
 
@@ -30,6 +34,8 @@ public class CheckoutPage extends Base {
     WebElement shippingInformationTxt;
     @FindBy(xpath = "//div[.='Price Total']")
     WebElement priceTotalTxt;
+    @FindBy(className = "summary_subtotal_label")
+    WebElement itemTotalTxt;
     @FindBy(id = "finish")
     WebElement btnFinish;
     @FindBy(className = "title")
@@ -83,6 +89,12 @@ public class CheckoutPage extends Base {
 
     public String getTextMessage1(){
         return getElementText(txtMessage1);
+    }
+
+    public String getItemTotalPrice(){
+        String itemTotalPrice = getElementText(itemTotalTxt).replace("Item total: $","");
+
+        return itemTotalPrice;
     }
 
     public void logOut(){
