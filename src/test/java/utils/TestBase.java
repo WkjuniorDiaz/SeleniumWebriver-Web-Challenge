@@ -24,11 +24,9 @@ public class TestBase {
 
         if (driver == null){
             if (prop.getProperty("browser").equalsIgnoreCase("chrome")){
-                ChromeOptions option = new ChromeOptions();
-                option.addArguments("--remote-allow-origins=*");
 
                 WebDriverManager.chromedriver().setup();
-                this.driver = new ChromeDriver(option);
+                this.driver = new ChromeDriver();
             }
 
             if (prop.getProperty("browser").equalsIgnoreCase("firefox")){
