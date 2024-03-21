@@ -2,7 +2,7 @@
 Feature: Checkout
 
   Background: User login
-    Given user login with valid credentials "TC001"
+    Given user login with valid credentials "StandardUser"
 
   Scenario: Verify Successful Checkout Process
     When the user adds the product "Sauce Labs Bike Light" to the cart

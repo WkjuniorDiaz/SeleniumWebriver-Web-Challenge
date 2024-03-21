@@ -1,9 +1,9 @@
 {
-  "TC001":{
+  "StandardUser":{
     "username":"standard_user",
     "password":"secret_sauce"
   },
-  "TC002":{
+  "LockedOutUser":{
     "username":"locked_out_user",
     "password":"secret_sauce"
   }
