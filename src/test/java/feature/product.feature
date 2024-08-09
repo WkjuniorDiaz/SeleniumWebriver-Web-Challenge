@@ -1,4 +1,4 @@
-@Product
+@Product @Regression
   Feature:Product
 
     Background: User log in

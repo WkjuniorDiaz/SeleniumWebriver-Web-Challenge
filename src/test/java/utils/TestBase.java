@@ -17,25 +17,28 @@ public class TestBase {
     public WebDriver WebdriverManager() throws IOException {
         FileInputStream file = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/globalProperties/global.properties");
         Properties prop = new Properties();
-        String url;
-
         prop.load(file);
-        url = prop.getProperty("QA-URL");
+
+        String url = prop.getProperty("QA-URL");
+        String browserProperties = prop.getProperty("browser");
+        String browserMaven = System.getProperty("browser");
+
+        String browser = browserMaven != null ? browserMaven : browserProperties;
 
         if (driver == null){
-            if (prop.getProperty("browser").equalsIgnoreCase("chrome")){
+            if (browser.equalsIgnoreCase("chrome")){
 
                 WebDriverManager.chromedriver().setup();
                 this.driver = new ChromeDriver();
             }
 
-            if (prop.getProperty("browser").equalsIgnoreCase("firefox")){
+            if (browser.equalsIgnoreCase("firefox")){
                 WebDriverManager.firefoxdriver().setup();
                 this.driver = new FirefoxDriver();
             }
 
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(Duration.ofMillis(2000));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
             driver.get(url);
         }
 

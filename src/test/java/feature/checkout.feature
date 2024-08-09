@@ -1,4 +1,4 @@
-@Checkout
+@Checkout @Regression
 Feature: Checkout
 
   Background: User login
