@@ -40,6 +40,15 @@ public class LoginPage extends Base {
         clickOn(btnLogin);
     }
 
+    public void typeUsername(String username){
+        waitVisibilityOf(loginTitle);
+        enterData(usernameField,username);
+    }
+
+    public void selectLoginBtn(){
+        clickOn(btnLogin);
+    }
+
     public void isErrorMessageDisplayed(){
         try {
             waitVisibilityOf(errorMessageContainer);
